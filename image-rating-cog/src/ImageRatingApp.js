@@ -44,7 +44,6 @@ const ImageRatingApp = () => {
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
-      <p className="mb-4">Participant ID: {participantId}</p>
       {selectedImages.length > 0 && (
         <div className="mb-4">
           <img
