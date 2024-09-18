@@ -1,4 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+import { db } from './firebaseConfig';
+import { collection, addDoc } from 'firebase/firestore';
 
 const ImageRatingApp = () => {
   const [participantId, setParticipantId] = useState('');
@@ -13,34 +16,35 @@ const ImageRatingApp = () => {
     allImages.push(`${i}b`);
   }
 
-
   useEffect(() => {
-    // Randomly select n images (let's say n = 10 for this example)
+    setParticipantId(uuidv4());
     const shuffled = [...allImages].sort(() => 0.5 - Math.random());
-    setSelectedImages(shuffled.slice(0, 10));
+    setSelectedImages(shuffled.slice(0, 30));
   }, []);
 
-  const handleRating = (selectedRating) => {
+  const handleRating = async (selectedRating) => {
     setRating(selectedRating);
-    setRatings([...ratings, { participantId, imageFile: selectedImages[currentImageIndex], rating: selectedRating }]);
+    const newRating = { participantId, imageFile: selectedImages[currentImageIndex], rating: selectedRating };
+    const newRatings = [...ratings, newRating];
+    setRatings(newRatings);
+    
+    try {
+      await addDoc(collection(db, 'ratings'), newRating);
+    } catch (error) {
+      console.error('Error saving rating:', error);
+    }
+    
     if (currentImageIndex < selectedImages.length - 1) {
       setCurrentImageIndex(currentImageIndex + 1);
-      setRating(null); // Reset rating for the next image
+      setRating(null);
     } else {
       alert('All images have been rated!');
-      console.log('Final ratings:', [...ratings, { participantId, imageFile: selectedImages[currentImageIndex], rating: selectedRating }]);
     }
   };
 
   return (
     <div className="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
-      <input
-        type="text"
-        value={participantId}
-        onChange={(e) => setParticipantId(e.target.value)}
-        placeholder="Enter Participant ID"
-        className="w-full p-2 mb-4 border rounded"
-      />
+      <p className="mb-4">Participant ID: {participantId}</p>
       {selectedImages.length > 0 && (
         <div className="mb-4">
           <img
