@@ -1,0 +1,14 @@
+[debug] [2024-09-18T17:38:22.399Z] ----------------------------------------------------------------------
+[debug] [2024-09-18T17:38:22.401Z] Command:       /home/dan/.nvm/versions/node/v20.17.0/bin/node /home/dan/.nvm/versions/node/v20.17.0/bin/firebase deploy
+[debug] [2024-09-18T17:38:22.402Z] CLI Version:   13.17.0
+[debug] [2024-09-18T17:38:22.402Z] Platform:      linux
+[debug] [2024-09-18T17:38:22.402Z] Node Version:  v20.17.0
+[debug] [2024-09-18T17:38:22.402Z] Time:          Wed Sep 18 2024 19:38:22 GMT+0200 (Central European Summer Time)
+[debug] [2024-09-18T17:38:22.402Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2024-09-18T17:38:22.457Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2024-09-18T17:38:22.458Z] > authorizing via signed-in user (danhedelstein@gmail.com)
+[debug] [2024-09-18T17:38:22.458Z] [iam] checking project image-rating-app-b4be0 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2024-09-18T17:38:22.459Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/image-rating-app-b4be0:testIamPermissions [none]
+[debug] [2024-09-18T17:38:22.460Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/image-rating-app-b4be0:testIamPermissions x-goog-quota-user=projects/image-rating-app-b4be0
+[debug] [2024-09-18T17:38:22.460Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/image-rating-app-b4be0:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
